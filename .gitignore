@@ -62,4 +62,7 @@ target/
 
 #Ipython Notebook
 .ipynb_checkpoints
->>>>>>> a3d78f23bf233d38776d1d791085dede55a1305d
+
+#mac 
+.DS_Store
+.Ulysses-favorites.plist

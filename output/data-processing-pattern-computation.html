@@ -84,10 +84,16 @@
 
         <p>Based on the kernel methods, the problem of generic determinants selection can be formulated as&nbsp;following:
 </p>
-<div class="math">$$\min_{\beta\in\mathbb R^{p}}\frac{1}{n}\sum_{i=1}^{n}L\left(Y_i,Xi\cdot \beta\right)+\lambda \Omega(\beta)$$</div>
+<div class="math">$$\min_{\beta\in\mathbb R^{p}}\frac{1}{n}\sum_{i=1}^{n}L\left(Y_i, \phi_i \cdot \beta\right)+\lambda \Omega(\beta)$$</div>
 <p>
-where <span class="math">\(L\)</span> is a loss function and <span class="math">\(\Omega\)</span> is a regulirization&nbsp;function.</p>
-<h2>jiofdsajofi</h2>
+where <span class="math">\(L\)</span> is a loss function and <span class="math">\(\Omega\)</span> is a regularization function.
+The vector <span class="math">\(\phi_i\)</span> is a feature vector obtained by mapping the sequence <span class="math">\(i\)</span> to the Hilbert space <span class="math">\(\mathbb R^p\)</span>.</p>
+<p>There are different choices of the mapping function:
+- spectrum kernel: <span class="math">\(\phi_i\)</span> denote the vector of the number of occurrences of each present k-mer.
+- substring&nbsp;kernel</p>
+<p>In all cases, the kernel function is supposed to be a comparison function or a similarity measure, and <span class="math">\(\phi\)</span> is a mapping projecting original space to a more easily comparable&nbsp;space.</p>
+<p>Our first approach is to apply spectrum kernel for k-mers of different lengths. To have a straightforward feeling of the presence of k-mers of different lengths, we can also display some visualization using these feature&nbsp;matrices.</p>
+<h2>Computing features&nbsp;matrices</h2>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
