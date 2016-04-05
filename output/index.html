@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
+    <link rel="stylesheet" type="text/css" href="./theme/css/image.css" />
+
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">
@@ -90,39 +92,12 @@
 <p>
 where <span class="math">\(L\)</span> is a loss function and <span class="math">\(\Omega\)</span> is a regularization function.
 The vector <span class="math">\(\phi_i\)</span> is a feature vector obtained by mapping the sequence <span class="math">\(i\)</span> to the Hilbert space <span class="math">\(\mathbb R^p\)</span>.</p>
-<p>There are different choices of the mapping function:
-- spectrum kernel: <span class="math">\(\phi_i\)</span> denote the vector of the number of occurrences of each present k-mer.
-- substring&nbsp;kernel</p>
-<p>In all cases, the kernel function is supposed to be a comparison function or a similarity measure, and <span class="math">\(\phi\)</span> is a mapping projecting original space to a more easily comparable&nbsp;space.</p>
-<p>Our first approach is to apply spectrum kernel for k-mers of different lengths. To have a straightforward feeling of the presence of k-mers of different lengths, we can also display some visualization using these feature&nbsp;matrices.</p>
-<h2>Computing features&nbsp;matrices</h2>
-<script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
-    var mathjaxscript = document.createElement('script');
-    mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';
-    mathjaxscript.type = 'text/javascript';
-    mathjaxscript.src = 'http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML';
-    mathjaxscript[(window.opera ? "innerHTML" : "text")] =
-        "MathJax.Hub.Config({" +
-        "    config: ['MMLorHTML.js']," +
-        "    TeX: { extensions: ['AMSmath.js','AMSsymbols.js','noErrors.js','noUndefined.js'], equationNumbers: { autoNumber: 'AMS' } }," +
-        "    jax: ['input/TeX','input/MathML','output/HTML-CSS']," +
-        "    extensions: ['tex2jax.js','mml2jax.js','MathMenu.js','MathZoom.js']," +
-        "    displayAlign: 'center'," +
-        "    displayIndent: '0em'," +
-        "    showMathMenu: true," +
-        "    tex2jax: { " +
-        "        inlineMath: [ ['\\\\(','\\\\)'] ], " +
-        "        displayMath: [ ['$$','$$'] ]," +
-        "        processEscapes: true," +
-        "        preview: 'TeX'," +
-        "    }, " +
-        "    'HTML-CSS': { " +
-        "        styles: { '.MathJax_Display, .MathJax .mo, .MathJax .mi, .MathJax .mn': {color: 'inherit ! important'} }, linebreaks: { automatic: false, width: 'container' }" +
-        "    } " +
-        "}); ";
-    (document.body || document.getElementsByTagName('head')[0]).appendChild(mathjaxscript);
-}
-</script>
+<p>There are different choices of the mapping&nbsp;function:</p>
+<ul>
+<li>spectrum kernel: <span class="math">\(\phi_i\)</span> denote the vector of the number of occurrences of each present&nbsp;k-mer.</li>
+<li>substring&nbsp;kernel</li>
+</ul>
+<p>In all cases, the ...</p>
                                 <p class="readmore">
                                     <a class="btn btn-small btn-info" href="./data-processing-pattern-computation.html">Read more...</a>
                                 </p>

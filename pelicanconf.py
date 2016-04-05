@@ -35,7 +35,9 @@ TYPOGRIFY=True
 
 DEFAULT_PAGINATION = 10
 
-SUMMARY_MAX_LENGTH = None
+SUMMARY_MAX_LENGTH = 100
+
+STATIC_PATHS = ['images', 'static']
 
 # Uncomment following line if you want document-relative URLs when developing
 SITEURL = 'http://localhost:8000/'

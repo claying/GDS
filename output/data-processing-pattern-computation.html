@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" type="text/css" href="./theme/css/main.css" />
 
+    <link rel="stylesheet" type="text/css" href="./theme/css/image.css" />
+
     <script type="text/javascript">var switchTo5x=true;</script>
     <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
     <script type="text/javascript">
@@ -88,12 +90,54 @@
 <p>
 where <span class="math">\(L\)</span> is a loss function and <span class="math">\(\Omega\)</span> is a regularization function.
 The vector <span class="math">\(\phi_i\)</span> is a feature vector obtained by mapping the sequence <span class="math">\(i\)</span> to the Hilbert space <span class="math">\(\mathbb R^p\)</span>.</p>
-<p>There are different choices of the mapping function:
-- spectrum kernel: <span class="math">\(\phi_i\)</span> denote the vector of the number of occurrences of each present k-mer.
-- substring&nbsp;kernel</p>
+<p>There are different choices of the mapping&nbsp;function:</p>
+<ul>
+<li>spectrum kernel: <span class="math">\(\phi_i\)</span> denote the vector of the number of occurrences of each present&nbsp;k-mer.</li>
+<li>substring&nbsp;kernel</li>
+</ul>
 <p>In all cases, the kernel function is supposed to be a comparison function or a similarity measure, and <span class="math">\(\phi\)</span> is a mapping projecting original space to a more easily comparable&nbsp;space.</p>
 <p>Our first approach is to apply spectrum kernel for k-mers of different lengths. To have a straightforward feeling of the presence of k-mers of different lengths, we can also display some visualization using these feature&nbsp;matrices.</p>
-<h2>Computing features&nbsp;matrices</h2>
+<h2>Computing feature&nbsp;matrices</h2>
+<p>To compute the feature matrices in a reasonable time, I used a toolbox implemented in Python interface, called <a href="http://www.shogun-toolbox.org/"><span class="caps">SHOGUN</span></a>. This package allows to construct a dictionary representation of the k-mer vocabulary of the training set, in such a way that it maps each sequence to indices. After computing the vector of indices for each sequence, we can easily construct a sparse matrix <span class="math">\(\phi\)</span> in Python.
+I have computed feature matrices for k-mers of length from 5 to 10, the space memory of these matrices becomes larger and larger but with lower growth for bigger&nbsp;k.</p>
+<h2>Analysis and visualization of feature&nbsp;matrices</h2>
+<p>One can compute easily the number of presences of each k-mer in sequences by replacing the values of matrix <span class="math">\(\phi\)</span> by 1 and summing along the&nbsp;columns.</p>
+<div class="highlight"><pre><span></span>k = 5 # length of k-mers
+M = load_coo_matrix(&#39;data/features_matrix_&#39;+str(k)+&#39;.npz&#39;) # load matrix $\phi$
+M.data[:] = 1 # without taking account of repetitions
+S = M.sum(axis=0) # number of presences of each k-mer
+</pre></div>
+
+
+<h5>Curves of minimal number of&nbsp;presences</h5>
+<p><img alt="k-mer-presence" src="/images/kmer-presences/5.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/6.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/7.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/8.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/9.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/10.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/11.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/12.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/13.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/14.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/15.png" /></p>
+<p>With the growth of k, we can see that the number of presences of each feature gets lower and lower and eventually gets concentrated near 0. We can also set log-scale for axis <span class="math">\(y\)</span> for large k to visualize better the behavior near&nbsp;0.</p>
+<p><img alt="k-mer-presence" src="/images/kmer-presences/log-13-2.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/log-14-2.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/log-15-2.png" /></p>
+<p>These figures give us an overview of presence of features and also an intuition to filter some k-mers which don&#8217;t seem as important as others. For example, in the case k=15, the k-mers that only present once in the sequences occupy <span class="math">\(\frac{3}{4}\)</span> of total features. By consequence, if we remove all these features, the new feature matrix becomes 4 times smaller than the original&nbsp;one.</p>
+<h4>Distribution of presence for&nbsp;k-mers</h4>
+<p><img alt="k-mer-presence" src="/images/kmer-presences/hist-5.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-6.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-7.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-8.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-9.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-10.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-11.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-12.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-13.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-14.png" />
+<img alt="k-mer-presence" src="/images/kmer-presences/hist-15.png" /></p>
 <script type="text/javascript">if (!document.getElementById('mathjaxscript_pelican_#%@#$@#')) {
     var mathjaxscript = document.createElement('script');
     mathjaxscript.id = 'mathjaxscript_pelican_#%@#$@#';

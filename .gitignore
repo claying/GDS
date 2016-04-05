@@ -66,3 +66,8 @@ target/
 #mac 
 .DS_Store
 .Ulysses-favorites.plist
+
+#pelican
+output/
+*.pid
+*.swp
