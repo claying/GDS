@@ -43,4 +43,4 @@ RELATIVE_URLS = True
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['render_math']
 
-THEME = "theme"
+THEME = "themes"
