@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 AUTHOR = u'Dexiong Chen'
 SITENAME = u'Genetic Determinants Selection'
 SITEURL = 'file:///home/thoth/dchen/Projects/code/website/output'
+RELATIVE_URLS = True
 
 PATH = 'content'
 
@@ -45,4 +46,4 @@ RELATIVE_URLS = True
 PLUGIN_PATHS = ['plugins']
 PLUGINS = ['render_math']
 
-THEME = "themes"
+THEME = "theme"
