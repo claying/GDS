@@ -14,7 +14,8 @@ FTP_TARGET_DIR=/
 
 SSH_HOST=pascal.inrialpes.fr
 SSH_USER=dchen
-SSH_TARGET_DIR=/local_scratch/www2/dchen
+SSH_PORT=22
+SSH_TARGET_DIR=/scratch/pascal/www2/dchen
 
 S3_BUCKET=my_s3_bucket
 
