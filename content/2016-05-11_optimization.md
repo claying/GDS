@@ -15,7 +15,7 @@ In our algorithm, I have tested active-set by adding 100 features violating the 
 
 #### Optimization algorithm
 
-For instant, the optimization algorithm for Lasso is FISTA, but we could find faster algorithm in the future.
+For the moment, the optimization algorithm for Lasso is FISTA, but we could find faster algorithm in the future.
 
 ## Dimensionality reduction
 
