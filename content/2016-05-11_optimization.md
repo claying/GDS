@@ -19,9 +19,21 @@ For instant, the optimization algorithm for Lasso is FISTA, but we could find fa
 
 ## Dimensionality reduction
 
-Another approach to reduce the time complexity is to reduce the dimension of the feature matrix. Concretely the problem can be described as follows: given a n-by-p matrix, how to find an approximated n-by-q matrix with q smaller than p?
+Another approach to reduce the time complexity is to reduce the dimension of the feature matrix before using Lasso regression. Concretely, the problem can be described as follows: given a n-by-p matrix, how to find an approximated n-by-q matrix with q smaller than p?
 
-Dimensionality reduction leads to lower time complexity, but in the contrast, it could cause lower accuracy. The generic methods consists of matrix factorization and feature hashing. As I mentioned in last blog, the majority of matrix factorization methods don't work in our case, as they don't preserve the sparsity of matrix. The only interesting factorization in our case is **CUR decomposition**. However, this approach is usually very expensive in terms of time complexity. We thus can focus on another approach related to hashing tricks. An arbitrary hash function was used to classify protein sequence ([Protein Sequence Classification Using Feature Hashing][2]), but this arbitrary choice of hash function could lead to unexpected result and doesn't exploit the inner relation in the data. A typical hashing, which tends to map similar items into the same 'buckets', is [LSH][3]. LSH has much in common with data clustering and feature abstraction. In fact, LSH serves as a merging tool to create abstract features, which can be seen as a [*regularizer*][4]. Furthermore, the efficiency of the LSH leads to very fast approximate [hierarchical clustering algorithm][5]. Thus, I propose here the following scheme for hashing and merging features (feature agglomeration):
+Dimensionality reduction leads to lower time complexity, but in the contrast, it could cause lower accuracy. The generic methods consists of matrix factorization, feature selection and feature hashing.
+
+#### Matrix factorization
+
+As I mentioned in last blog, the majority of matrix factorization methods don't work in our case, as they don't preserve the sparsity of matrix. The only interesting factorization in our case is **CUR decomposition**. However, this approach is usually very expensive in terms of time complexity.
+
+#### Feature selection
+
+Feature selection attempts to remove redundant or irrelevant features based on some scoring functions (e.g. by comparing the tf-idf of each feature) in order to improve the prediction performance and efficiency of learning algorithms. This approach is usually very fast but can result in some loss of information.
+
+#### Feature hashing
+
+Another approach is related to hashing tricks. It is designed to map very high dimensional input spaces into lower dimensional spaces. An arbitrary hash function was used to classify protein sequence ([Protein Sequence Classification Using Feature Hashing][2]), but this arbitrary choice of hash function could lead to unexpected result and doesn't exploit the inner relation in the data. A typical hashing, which tends to map similar items into the same 'buckets', is [LSH][3]. LSH has much in common with data clustering and feature abstraction. In fact, LSH serves as a merging tool to create abstract features, which can be seen as a [*regularizer*][4]. Furthermore, the efficiency of the LSH leads to very fast approximate [hierarchical clustering algorithm][5]. Thus, I propose here the following scheme for hashing and merging features (feature agglomeration):
 
 1. hierarchical clustering on features
 2. merging the features in the same cluster by taking the union of these features
