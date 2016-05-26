@@ -13,3 +13,7 @@ img[alt=ridge]{
 img[alt=lasso]{
 	width: 45%;
 }
+
+img[alt=selected_features]{
+	width: 45%;
+}
