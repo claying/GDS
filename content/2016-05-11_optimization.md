@@ -1,5 +1,5 @@
 title: Optimization and dimensionality reduction
-data: 2016-05-11
+date: 2016-05-11
 category: notes
 tags: lasso regression, notes, active-set, dimensionality reduction
 
